@@ -1,6 +1,5 @@
 import styled from "styled-components";
 import { useForm } from "react-hook-form";
-
 import Heading from "../ui/Heading";
 import Row from "../ui/Row";
 import Input from "../ui/Input";
@@ -8,6 +7,8 @@ import Button from "../ui/Button";
 import Form from "../ui/Form";
 import InputBox from "../ui/InputBox";
 import FormHeader from "../ui/FormHeader";
+import { usePredictDiabetes } from "../features/usePredictDiabetes";
+import PredictionResult from "../ui/PredictionResult";
 
 const StyledImage = styled.img`
   width: 100%;
@@ -18,18 +19,51 @@ const StyledImage = styled.img`
 `;
 
 function DiabetesPrediction() {
-  const { register, handleSubmit, reset, formState } = useForm();
+  // Define default values for the form
+  const defaultValues = {
+    no_of_pregnancies: 0,
+    glucose_level: 100,
+    blood_pressure_value: 70,
+    skinthickness_value: 20,
+    insulin_value: 75,
+    bmi_value: 25,
+    diabetespedigreefunction_value: 0.5,
+    age: 30,
+  };
+
+  const { register, handleSubmit, formState } = useForm({
+    defaultValues: defaultValues, // Pass default values to useForm
+  });
   const { errors } = formState;
 
-  function onSubmit(data) {
-    console.log(data);
+  const { predictDiabetes, isPredicting, response } = usePredictDiabetes();
+
+  // Handle form submission
+  function onSubmit(formData) {
+    const symptoms = {
+      pregnancies: parseFloat(formData.no_of_pregnancies),
+      glucose: parseFloat(formData.glucose_level),
+      bloodPressure: parseFloat(formData.blood_pressure_value),
+      skinThickness: parseFloat(formData.skinthickness_value),
+      insulin: parseFloat(formData.insulin_value),
+      bmi: parseFloat(formData.bmi_value),
+      diabetesPedigreeFunction: parseFloat(
+        formData.diabetespedigreefunction_value
+      ),
+      age: parseFloat(formData.age),
+    };
+
+    // Call the predictDiabetes function to send data to the API
+    predictDiabetes(symptoms, {
+      onSuccess: () => {
+        // reset(); // Reset the form to default values after submission
+      },
+    });
   }
+
   function onError(errors) {
     console.log(errors);
   }
-  // function handleCloseForm() {
-  //   onCloseModal();
-  // }
 
   return (
     <>
@@ -47,9 +81,8 @@ function DiabetesPrediction() {
           error={errors?.no_of_pregnancies?.message}
         >
           <Input
-            type="text"
+            type="number"
             id="no_of_pregnancies"
-            // disabled={}
             {...register("no_of_pregnancies", {
               required: "This field is required",
             })}
@@ -60,7 +93,6 @@ function DiabetesPrediction() {
           <Input
             type="text"
             id="glucose_level"
-            // disabled={}
             {...register("glucose_level", {
               required: "This field is required",
             })}
@@ -74,7 +106,6 @@ function DiabetesPrediction() {
           <Input
             type="text"
             id="blood_pressure_value"
-            // disabled={}
             {...register("blood_pressure_value", {
               required: "This field is required",
             })}
@@ -82,14 +113,13 @@ function DiabetesPrediction() {
         </InputBox>
 
         <InputBox
-          label="Scckinthickness value"
-          error={errors?.scckinthickness_value?.message}
+          label="Skinthickness value"
+          error={errors?.skinthickness_value?.message}
         >
           <Input
             type="text"
-            id="scckinthickness_value"
-            // disabled={}
-            {...register("scckinthickness_value", {
+            id="skinthickness_value"
+            {...register("skinthickness_value", {
               required: "This field is required",
             })}
           />
@@ -99,7 +129,6 @@ function DiabetesPrediction() {
           <Input
             type="text"
             id="insulin_value"
-            // disabled={}
             {...register("insulin_value", {
               required: "This field is required",
             })}
@@ -110,7 +139,6 @@ function DiabetesPrediction() {
           <Input
             type="text"
             id="bmi_value"
-            // disabled={}
             {...register("bmi_value", {
               required: "This field is required",
             })}
@@ -124,7 +152,6 @@ function DiabetesPrediction() {
           <Input
             type="text"
             id="diabetespedigreefunction_value"
-            // disabled={}
             {...register("diabetespedigreefunction_value", {
               required: "This field is required",
             })}
@@ -133,18 +160,22 @@ function DiabetesPrediction() {
 
         <InputBox label="Age" error={errors?.age?.message}>
           <Input
-            type="text"
+            type="number"
             id="age"
-            // disabled={}
             {...register("age", {
               required: "This field is required",
             })}
           />
         </InputBox>
 
-        <Button>See Results</Button>
+        <Button type="submit">See Results</Button>
       </Form>
+
+      {!isPredicting && response && (
+        <PredictionResult result={response.result} check="Diabetic" />
+      )}
     </>
   );
 }
+
 export default DiabetesPrediction;
