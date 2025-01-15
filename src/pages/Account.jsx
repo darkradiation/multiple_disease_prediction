@@ -1,5 +1,10 @@
 function Account() {
-  return <div>Account</div>;
+  return (
+    <div>
+      <h1>Under Development</h1>
+      <h1>Coming Soon ...</h1>
+    </div>
+  );
 }
 
 export default Account;

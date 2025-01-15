@@ -48,7 +48,12 @@ function App() {
                 // </ProtectedRoute>
               }
             >
-              <Route index element={<Navigate replace to="dashboard" />} />
+              {/* <Route index element={<Navigate replace to="dashboard" />} /> */}
+              <Route
+                index
+                element={<Navigate replace to="diabetes_prediction" />}
+              />
+
               <Route path="dashboard" element={<Dashboard />} />
               <Route path="account" element={<Account />} />
 

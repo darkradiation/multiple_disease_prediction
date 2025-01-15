@@ -1,10 +1,8 @@
-import React from "react";
-
 function AllDiseasePrediction() {
   return (
     <div>
-      <h1>All Disease Prediction</h1>
-      <h1>coming soon ...</h1>
+      <h1>Under Development</h1>
+      <h1>Coming Soon ...</h1>
     </div>
   );
 }
