@@ -2,6 +2,11 @@
 
 1. Lung Cancer model is not working .
 
+## Improvements
+
+1. Add smooth scroll
+2. scroll to the results
+
 ## Features to Add
 
 1. Responsiveness
