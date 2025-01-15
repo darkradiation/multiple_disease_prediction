@@ -74,7 +74,8 @@ function HepatitisPrediction() {
         <Heading as="h1">Hepatitis Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/hepatitis.jpg" alt="Hepatitis Image" />
+        {/* <StyledImage src="/hepatitis 1.jpg" alt="Hepatitis Image" /> */}
+        <StyledImage src="/hepatitis 2.jpg" alt="Hepatitis Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>

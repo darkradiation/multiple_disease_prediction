@@ -99,7 +99,8 @@ function ChronicKidneyPrediction() {
         <Heading as="h1">Chronic Kidney Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/chronic-kidney.jpg" alt="Chronic Kidney Image" />
+        {/* <StyledImage src="/kidney 1.cms" alt="Chronic Kidney Image" /> */}
+        <StyledImage src="/kidney 2.jpg" alt="Chronic Kidney Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>

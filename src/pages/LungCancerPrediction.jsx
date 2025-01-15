@@ -80,7 +80,9 @@ function LungCancerPrediction() {
         <Heading as="h1">Lung Cancer Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/lung-cancer.jpg" alt="Lung Cancer Image" />
+        {/* <StyledImage src="/lung 1.jpg" alt="Lung Cancer Image" /> */}
+        <StyledImage src="/lung 2.jpg" alt="Lung Cancer Image" />
+        {/* <StyledImage src="/lung 3.jpg" alt="Lung Cancer Image" /> */}
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit)}>

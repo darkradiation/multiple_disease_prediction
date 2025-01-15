@@ -111,7 +111,7 @@ function BreastCancerPrediction() {
         <Heading as="h1">Breast Cancer Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/breast-cancer.jpg" alt="Breast Cancer Image" />
+        <StyledImage src="/breast cancer 1.jpeg" alt="Breast Cancer Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>

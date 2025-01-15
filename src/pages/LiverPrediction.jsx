@@ -72,7 +72,8 @@ function LiverPrediction() {
         <Heading as="h1">Liver Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/liver.jpg" alt="Liver Image" />
+        <StyledImage src="/liver 2.webp" alt="Liver Image" />
+        {/* <StyledImage src="/liver 3.jpg" alt="Liver Image" /> */}
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>

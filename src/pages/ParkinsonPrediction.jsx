@@ -95,7 +95,7 @@ function ParkinsonPrediction() {
         <Heading as="h1">Parkinson&apos;s Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/parkinson.jpg" alt="Parkinson's Disease Image" />
+        <StyledImage src="/parkinson 1.png" alt="Parkinson's Disease Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit)}>

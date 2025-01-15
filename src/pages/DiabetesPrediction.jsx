@@ -71,7 +71,7 @@ function DiabetesPrediction() {
         <Heading as="h1">Diabetes Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/diabetes.jpg" alt="Diabetes Image" />
+        <StyledImage src="/diabetes 1.jpg" alt="Diabetes Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>

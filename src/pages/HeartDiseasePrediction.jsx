@@ -76,7 +76,8 @@ function HeartPrediction() {
         <Heading as="h1">Heart Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        <StyledImage src="/heart.jpg" alt="Heart Disease Image" />
+        {/* <StyledImage src="/heart 1.jpeg" alt="Heart Disease Image" /> */}
+        <StyledImage src="/heart 2.webp" alt="Heart Disease Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
