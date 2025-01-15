@@ -63,18 +63,18 @@ function MainNav() {
   return (
     <nav>
       <NavList>
-        <li>
+        {/* <li>
           <StyledNavLink to="/dashboard">
             <HiOutlineHome />
             <span>Dashboard</span>
           </StyledNavLink>
-        </li>
-        <li>
+        </li> */}
+        {/* <li>
           <StyledNavLink to="/all_disease_prediction">
             <FaDisease />
             <span>All Disease</span>
           </StyledNavLink>
-        </li>
+        </li> */}
         <li>
           <StyledNavLink to="/diabetes_prediction">
             <FaDisease />
