@@ -2,7 +2,7 @@ import { BASE_API_URL } from "./apiUrls";
 
 export const predictLungCancer = async (symptoms) => {
   try {
-    const response = await fetch(`${BASE_API_URL}/lung_cancer`, {
+    const response = await fetch(`${BASE_API_URL}lung_cancer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

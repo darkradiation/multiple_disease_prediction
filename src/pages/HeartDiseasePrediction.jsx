@@ -9,6 +9,7 @@ import InputBox from "../ui/InputBox";
 import FormHeader from "../ui/FormHeader";
 import { usePredictHeart } from "../features/usePredictHeart";
 import PredictionResult from "../ui/PredictionResult";
+import Select from "../ui/Select";
 
 const StyledImage = styled.img`
   width: 100%;
@@ -59,6 +60,7 @@ function HeartPrediction() {
       thal: parseFloat(formData.thal),
     };
 
+    console.log(symptoms);
     predictHeart(symptoms, {
       onSuccess: () => {
         // Optionally reset the form or show a success message
@@ -91,20 +93,26 @@ function HeartPrediction() {
           />
         </InputBox>
 
-        <InputBox label="Sex (1=male,0=female)" error={errors?.sex?.message}>
-          <Input
-            type="number"
+        <InputBox label="Gender" error={errors?.sex?.message}>
+          <Select
             id="sex"
             {...register("sex", { required: "This field is required" })}
-          />
+          >
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </Select>
         </InputBox>
 
-        <InputBox label="Chest Pain Type (1,2,3,4)" error={errors?.cp?.message}>
-          <Input
-            type="number"
+        <InputBox label="Chest Pain Type" error={errors?.cp?.message}>
+          <Select
             id="cp"
             {...register("cp", { required: "This field is required" })}
-          />
+          >
+            <option value="1">typical angina</option>
+            <option value="2">atypical angina</option>
+            <option value="3">non-anginal</option>
+            <option value="4">asymptomatic</option>
+          </Select>
         </InputBox>
 
         <InputBox
@@ -126,10 +134,28 @@ function HeartPrediction() {
           />
         </InputBox>
 
-        <InputBox
-          label="Maximum Heart Rate Achieved"
-          error={errors?.thalach?.message}
-        >
+        <InputBox label="Fasting Blood Sugar" error={errors?.fbs?.message}>
+          <Select
+            id="fbs"
+            {...register("fbs", { required: "This field is required" })}
+          >
+            <option value="1">greater than 120mg/dl</option>
+            <option value="0">less than 120mg/dl</option>
+          </Select>
+        </InputBox>
+
+        <InputBox label="Resting ECG levels" error={errors?.restecg?.message}>
+          <Select
+            id="restecg"
+            {...register("restecg", { required: "This field is required" })}
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+          </Select>
+        </InputBox>
+
+        <InputBox label="Thalach Levels" error={errors?.thalach?.message}>
           <Input
             type="number"
             id="thalach"
@@ -138,80 +164,61 @@ function HeartPrediction() {
         </InputBox>
 
         <InputBox
-          label="Fasting Blood Sugar (>120mg/dl ? 1 : else 0)"
-          error={errors?.fbs?.message}
-        >
-          <Input
-            type="number"
-            id="fbs"
-            {...register("fbs", { required: "This field is required" })}
-          />
-        </InputBox>
-
-        <InputBox
-          label="Resting Electrocardiographic Results (0,1,2)"
-          error={errors?.restecg?.message}
-        >
-          <Input
-            type="number"
-            id="restecg"
-            {...register("restecg", { required: "This field is required" })}
-          />
-        </InputBox>
-
-        <InputBox
-          label="Exercise-Induced Angina (1=yes,0=no)"
+          label="Exercise-Induced Angina"
           error={errors?.exang?.message}
         >
-          <Input
-            type="number"
+          <Select
             id="exang"
             {...register("exang", { required: "This field is required" })}
-          />
+          >
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </Select>
         </InputBox>
 
-        <InputBox
-          label="Slope of the Peak Exercise ST Segment (1,2,3)"
-          error={errors?.slope?.message}
-        >
-          <Input
-            type="number"
-            id="slope"
-            {...register("slope", { required: "This field is required" })}
-          />
-        </InputBox>
-
-        <InputBox
-          label="Number of Major Vessels Colored by Fluoroscopy (0-3)"
-          error={errors?.ca?.message}
-        >
-          <Input
-            type="number"
-            id="ca"
-            {...register("ca", { required: "This field is required" })}
-          />
-        </InputBox>
-
-        <InputBox
-          label="Thalassemia (1=normal,2=fixed defect,3=reversible defect)"
-          error={errors?.thal?.message}
-        >
-          <Input
-            type="number"
-            id="thal"
-            {...register("thal", { required: "This field is required" })}
-          />
-        </InputBox>
-
-        <InputBox
-          label="ST Depression Induced by Exercise"
-          error={errors?.oldpeak?.message}
-        >
+        <InputBox label="Old Peak History" error={errors?.oldpeak?.message}>
           <Input
             type="number"
             id="oldpeak"
             {...register("oldpeak", { required: "This field is required" })}
           />
+        </InputBox>
+
+        <InputBox label="Slope of the Peak " error={errors?.slope?.message}>
+          <Select
+            id="slope"
+            {...register("slope", { required: "This field is required" })}
+          >
+            <option value="1">Up-sloping</option>
+            <option value="2">Flat</option>
+            <option value="3">Down-sloping</option>
+          </Select>
+        </InputBox>
+
+        <InputBox label="Thalassemia " error={errors?.thal?.message}>
+          <Select
+            id="thal"
+            {...register("thal", { required: "This field is required" })}
+          >
+            <option value="1">Normal</option>
+            <option value="2">Fixed Defect</option>
+            <option value="3">Reversible Defect</option>
+          </Select>
+        </InputBox>
+
+        <InputBox
+          label="Number of Major Vessels Colored by Fluoroscopy"
+          error={errors?.ca?.message}
+        >
+          <Select
+            id="ca"
+            {...register("ca", { required: "This field is required" })}
+          >
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </Select>
         </InputBox>
 
         <Button type="submit">See Results</Button>

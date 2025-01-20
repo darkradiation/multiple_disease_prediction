@@ -20,30 +20,19 @@ const StyledImage = styled.img`
 
 function ChronicKidneyPrediction() {
   const defaultValues = {
-    age: 48,
-    bp: 80,
-    sg: 1.02,
-    al: 1,
-    su: 0,
-    rbc: 1,
-    pc: 1,
-    pcc: 0,
-    ba: 0,
-    bgr: 121,
-    bu: 36,
-    sc: 1.2,
-    sod: 137,
-    pot: 4.6,
-    hemo: 15.4,
-    pcv: 44,
-    wc: 7800,
-    rc: 5.2,
-    htn: 1,
-    dm: 0,
-    cad: 0,
-    appet: 1,
-    pe: 0,
-    ane: 0,
+    Bp: 80,
+    Sg: 1.02,
+    Al: 1,
+    Su: 0,
+    Rbc: 1,
+    Bu: 44,
+    Sc: 1.2,
+    Sod: 138,
+    Pot: 4.6,
+    Hemo: 15.4,
+    Wbcc: 7800,
+    Rbcc: 5.2,
+    Htn: 0,
   };
 
   const { register, handleSubmit, formState } = useForm({
@@ -56,32 +45,22 @@ function ChronicKidneyPrediction() {
 
   function onSubmit(formData) {
     const symptoms = {
-      age: parseFloat(formData.age),
-      bp: parseFloat(formData.bp),
-      sg: parseFloat(formData.sg),
-      al: parseFloat(formData.al),
-      su: parseFloat(formData.su),
-      rbc: parseFloat(formData.rbc),
-      pc: parseFloat(formData.pc),
-      pcc: parseFloat(formData.pcc),
-      ba: parseFloat(formData.ba),
-      bgr: parseFloat(formData.bgr),
-      bu: parseFloat(formData.bu),
-      sc: parseFloat(formData.sc),
-      sod: parseFloat(formData.sod),
-      pot: parseFloat(formData.pot),
-      hemo: parseFloat(formData.hemo),
-      pcv: parseFloat(formData.pcv),
-      wc: parseFloat(formData.wc),
-      rc: parseFloat(formData.rc),
-      htn: parseFloat(formData.htn),
-      dm: parseFloat(formData.dm),
-      cad: parseFloat(formData.cad),
-      appet: parseFloat(formData.appet),
-      pe: parseFloat(formData.pe),
-      ane: parseFloat(formData.ane),
+      Bp: parseFloat(formData.Bp),
+      Sg: parseFloat(formData.Sg),
+      Al: parseFloat(formData.Al),
+      Su: parseFloat(formData.Su),
+      Rbc: parseFloat(formData.Rbc),
+      Bu: parseFloat(formData.Bu),
+      Sc: parseFloat(formData.Sc),
+      Sod: parseFloat(formData.Sod),
+      Pot: parseFloat(formData.Pot),
+      Hemo: parseFloat(formData.Hemo),
+      Wbcc: parseFloat(formData.Wbcc),
+      Rbcc: parseFloat(formData.Rbcc),
+      Htn: parseFloat(formData.Htn),
     };
 
+    console.log(symptoms);
     predictChronicKidney(symptoms, {
       onSuccess: () => {
         // Optionally reset the form or perform other actions
@@ -99,178 +78,100 @@ function ChronicKidneyPrediction() {
         <Heading as="h1">Chronic Kidney Disease Prediction</Heading>
       </Row>
       <Row type="horizontal">
-        {/* <StyledImage src="/kidney 1.cms" alt="Chronic Kidney Image" /> */}
         <StyledImage src="/kidney 2.jpg" alt="Chronic Kidney Image" />
       </Row>
 
       <Form onSubmit={handleSubmit(onSubmit, onError)}>
         <FormHeader>Enter the following values</FormHeader>
-        <InputBox label="Age" error={errors?.age?.message}>
+        <InputBox label="Blood Pressure" error={errors?.Bp?.message}>
           <Input
             type="text"
-            id="age"
-            {...register("age", { required: "This field is required" })}
+            id="Bp"
+            {...register("Bp", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Blood Pressure" error={errors?.bp?.message}>
+        <InputBox label="Specific Gravity" error={errors?.Sg?.message}>
           <Input
             type="text"
-            id="bp"
-            {...register("bp", { required: "This field is required" })}
+            id="Sg"
+            {...register("Sg", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Specific Gravity" error={errors?.sg?.message}>
+        <InputBox label="Albumin" error={errors?.Al?.message}>
           <Input
             type="text"
-            id="sg"
-            {...register("sg", { required: "This field is required" })}
+            id="Al"
+            {...register("Al", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Albumin" error={errors?.al?.message}>
+        <InputBox label="Sugar" error={errors?.Su?.message}>
           <Input
             type="text"
-            id="al"
-            {...register("al", { required: "This field is required" })}
+            id="Su"
+            {...register("Su", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Sugar" error={errors?.su?.message}>
+        <InputBox label="Red Blood Cells" error={errors?.Rbc?.message}>
           <Input
             type="text"
-            id="su"
-            {...register("su", { required: "This field is required" })}
+            id="Rbc"
+            {...register("Rbc", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Red Blood Cells" error={errors?.rbc?.message}>
+        <InputBox label="Blood Urea" error={errors?.Bu?.message}>
           <Input
             type="text"
-            id="rbc"
-            {...register("rbc", { required: "This field is required" })}
+            id="Bu"
+            {...register("Bu", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Pus Cell" error={errors?.pc?.message}>
+        <InputBox label="Serum Creatinine" error={errors?.Sc?.message}>
           <Input
             type="text"
-            id="pc"
-            {...register("pc", { required: "This field is required" })}
+            id="Sc"
+            {...register("Sc", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Pus Cell Clumps" error={errors?.pcc?.message}>
+        <InputBox label="Sodium" error={errors?.Sod?.message}>
           <Input
             type="text"
-            id="pcc"
-            {...register("pcc", { required: "This field is required" })}
+            id="Sod"
+            {...register("Sod", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Bacteria" error={errors?.ba?.message}>
+        <InputBox label="Potassium" error={errors?.Pot?.message}>
           <Input
             type="text"
-            id="ba"
-            {...register("ba", { required: "This field is required" })}
+            id="Pot"
+            {...register("Pot", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Blood Glucose Random" error={errors?.bgr?.message}>
+        <InputBox label="Hemoglobin" error={errors?.Hemo?.message}>
           <Input
             type="text"
-            id="bgr"
-            {...register("bgr", { required: "This field is required" })}
+            id="Hemo"
+            {...register("Hemo", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Blood Urea" error={errors?.bu?.message}>
+        <InputBox label="White Blood Cell Count" error={errors?.Wbcc?.message}>
           <Input
             type="text"
-            id="bu"
-            {...register("bu", { required: "This field is required" })}
+            id="Wbcc"
+            {...register("Wbcc", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Serum Creatinine" error={errors?.sc?.message}>
+        <InputBox label="Red Blood Cell Count" error={errors?.Rbcc?.message}>
           <Input
             type="text"
-            id="sc"
-            {...register("sc", { required: "This field is required" })}
+            id="Rbcc"
+            {...register("Rbcc", { required: "This field is required" })}
           />
         </InputBox>
-        <InputBox label="Sodium" error={errors?.sod?.message}>
+        <InputBox label="Hypertension" error={errors?.Htn?.message}>
           <Input
             type="text"
-            id="sod"
-            {...register("sod", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Potassium" error={errors?.pot?.message}>
-          <Input
-            type="text"
-            id="pot"
-            {...register("pot", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Hemoglobin" error={errors?.hemo?.message}>
-          <Input
-            type="text"
-            id="hemo"
-            {...register("hemo", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Packed Cell Volume" error={errors?.pcv?.message}>
-          <Input
-            type="text"
-            id="pcv"
-            {...register("pcv", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="White Blood Cell Count" error={errors?.wc?.message}>
-          <Input
-            type="text"
-            id="wc"
-            {...register("wc", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Red Blood Cell Count" error={errors?.rc?.message}>
-          <Input
-            type="text"
-            id="rc"
-            {...register("rc", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Hypertension" error={errors?.htn?.message}>
-          <Input
-            type="text"
-            id="htn"
-            {...register("htn", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Diabetes Mellitus" error={errors?.dm?.message}>
-          <Input
-            type="text"
-            id="dm"
-            {...register("dm", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Coronary Artery Disease" error={errors?.cad?.message}>
-          <Input
-            type="text"
-            id="cad"
-            {...register("cad", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Appetite" error={errors?.appet?.message}>
-          <Input
-            type="text"
-            id="appet"
-            {...register("appet", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Pedal Edema" error={errors?.pe?.message}>
-          <Input
-            type="text"
-            id="pe"
-            {...register("pe", { required: "This field is required" })}
-          />
-        </InputBox>
-        <InputBox label="Anemia" error={errors?.ane?.message}>
-          <Input
-            type="text"
-            id="ane"
-            {...register("ane", { required: "This field is required" })}
+            id="Htn"
+            {...register("Htn", { required: "This field is required" })}
           />
         </InputBox>
 

@@ -9,6 +9,7 @@ import InputBox from "../ui/InputBox";
 import FormHeader from "../ui/FormHeader";
 import { usePredictHepatitis } from "../features/usePredictHepatitis";
 import PredictionResult from "../ui/PredictionResult";
+import Select from "../ui/Select";
 
 const StyledImage = styled.img`
   width: 100%;
@@ -89,15 +90,14 @@ function HepatitisPrediction() {
           />
         </InputBox>
 
-        <InputBox
-          label="Sex (1 = Male, 0 = Female)"
-          error={errors?.Sex?.message}
-        >
-          <Input
-            type="text"
+        <InputBox label="Gender" error={errors?.Sex?.message}>
+          <Select
             id="Sex"
             {...register("Sex", { required: "This field is required" })}
-          />
+          >
+            <option value="1">Male</option>
+            <option value="0">Female</option>
+          </Select>
         </InputBox>
 
         <InputBox label="Albumin (ALB)" error={errors?.ALB?.message}>
