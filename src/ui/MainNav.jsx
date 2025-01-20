@@ -88,9 +88,9 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/parkinson_prediction">
-            <FaBrain />
-            <span>Parkinson</span>
+          <StyledNavLink to="/lung_cancer_prediction">
+            <FaLungs />
+            <span>Lung Cancer</span>
           </StyledNavLink>
         </li>
         <li>
@@ -106,15 +106,15 @@ function MainNav() {
           </StyledNavLink>
         </li>
         <li>
-          <StyledNavLink to="/lung_cancer_prediction">
-            <FaLungs />
-            <span>Lung Cancer</span>
-          </StyledNavLink>
-        </li>
-        <li>
           <StyledNavLink to="/chronic_kidney_prediction">
             <GiKidneys />
             <span>Chronic Kidney</span>
+          </StyledNavLink>
+        </li>
+        <li>
+          <StyledNavLink to="/parkinson_prediction">
+            <FaBrain />
+            <span>Parkinson</span>
           </StyledNavLink>
         </li>
         <li>
