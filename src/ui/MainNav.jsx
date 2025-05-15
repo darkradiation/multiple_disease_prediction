@@ -14,7 +14,11 @@ import { GiHeartOrgan, GiKidneys, GiLiver } from "react-icons/gi";
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
+  height: 100%; /* Ensure the height is set to 100% to allow scrolling within the component */
   gap: 0.8rem;
+  overflow-y: auto; /* Make the list scrollable vertically when content overflows */
+  // scrollbar-width: none; /* Hide scrollbar for a cleaner look (optional) */
+  
 `;
 
 const StyledNavLink = styled(NavLink)`
@@ -69,12 +73,12 @@ function MainNav() {
             <span>Dashboard</span>
           </StyledNavLink>
         </li> */}
-        {/* <li>
-          <StyledNavLink to="/all_disease_prediction">
+        <li>
+          <StyledNavLink to="/general_disease_prediction">
             <FaDisease />
             <span>All Disease</span>
           </StyledNavLink>
-        </li> */}
+        </li>
         <li>
           <StyledNavLink to="/diabetes_prediction">
             <FaDisease />

@@ -14,7 +14,7 @@ import Settings from "./pages/Settings";
 import Login from "./pages/Login";
 import PageNotFound from "./pages/PageNotFound";
 
-import AllDiseasePrediction from "./pages/AllDiseasePrediction";
+import GeneralDiseasePrediction from "./pages/GeneralDiseasePrediction";
 import DiabetesPrediction from "./pages/DiabetesPrediction";
 import HeartDiseasePrediction from "./pages/HeartDiseasePrediction";
 import ParkinsonPrediction from "./pages/ParkinsonPrediction";
@@ -58,8 +58,8 @@ function App() {
               <Route path="account" element={<Account />} />
 
               <Route
-                path="all_disease_prediction"
-                element={<AllDiseasePrediction />}
+                path="general_disease_prediction"
+                element={<GeneralDiseasePrediction />}
               />
               <Route
                 path="diabetes_prediction"
