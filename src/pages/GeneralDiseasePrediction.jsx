@@ -164,14 +164,25 @@ function GeneralDiseasePrediction() {
   function onSubmit(event) {
     event.preventDefault(); // Prevent default form submission behavior
 
-    // Assuming your prediction API for general disease takes an array of symptom names
-    // predictGeneralDisease(selectedSymptoms, {
-    //   onSuccess: () => {
-    //     // Optionally clear selected symptoms or show a success message
-    //     // setSelectedSymptoms([]);
-    //   },
-    // });
-    console.log(selectedSymptoms);
+    // Construct the payload as expected by the backend API
+    const payload = {
+      symptoms: selectedSymptoms,
+    };
+
+    // Log the payload to the console for debugging
+    console.log("Payload being sent:", payload);
+
+    predictGeneralDisease(payload, {
+      onSuccess: () => {
+        // Optionally clear selected symptoms or show a success message
+        // setSelectedSymptoms([]); // Uncomment if you want to clear symptoms after successful prediction
+        console.log("Prediction successful!");
+      },
+      onError: (error) => {
+        // Handle any prediction errors
+        console.error("Prediction failed:", error);
+      },
+    });
   }
 
   function handleSelectSymptom(symptom) {
@@ -193,7 +204,7 @@ function GeneralDiseasePrediction() {
       </Row>
       <Row type="horizontal">
         {/* <StyledImage src="/heart 1.jpeg" alt="Heart Disease Image" /> */}
-        <StyledImage src="/heart 2.webp" alt="Heart Disease Image" />
+        <StyledImage src="/general_disease.jpeg" alt="General Disease Image" />
       </Row>
 
       <Form onSubmit={onSubmit}>
@@ -201,14 +212,19 @@ function GeneralDiseasePrediction() {
 
         <InputBox label="Symptoms">
           <SelectBox
-            options={generalSymptoms}
+            options={generalSymptoms.sort()} // Sort symptoms alphabetically for consistency if needed
             selectedSymptoms={selectedSymptoms}
             onSelectSymptom={handleSelectSymptom}
             onRemoveSymptom={handleRemoveSymptom}
           />
         </InputBox>
 
-        <Button type="submit">See Results</Button>
+        <Button
+          type="submit"
+          disabled={isPredicting || selectedSymptoms.length === 0}
+        >
+          {isPredicting ? "Predicting..." : "See Results"}
+        </Button>
       </Form>
 
       {!isPredicting && response && (

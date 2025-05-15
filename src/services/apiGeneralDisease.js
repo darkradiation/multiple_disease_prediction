@@ -1,30 +1,33 @@
-import { BASE_API_URL } from "./apiUrls"; // Assuming you have this file
+import { BASE_API_URL } from "./apiUrls";
 
-const predictGeneralDisease = async (symptomsList) => {
+const predictGeneralDisease = async (payloadData) => {
   try {
-    // The API expects an object with a "symptoms" key, which is a list of strings
-    const payload = { symptoms: symptomsList };
-
     const response = await fetch(`${BASE_API_URL}general_disease`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(payload),
+      body: JSON.stringify(payloadData), // Send the received payloadData directly
     });
 
     if (!response.ok) {
-      const errorData = await response.json(); // Try to get error message from API
-      throw new Error(errorData.error || "Network response was not ok");
+      const errorData = await response.json();
+      throw new Error(
+        errorData.error ||
+          `API Error: ${response.status} ${response.statusText}`
+      );
     }
 
     const data = await response.json();
-    return data; // Expected to be { predicted_disease: "Disease Name" }
+    // The backend returns { "result": "Disease Name" }
+    // We can transform it here or let the hook handle it.
+    // For consistency with your hook's onSuccess, let's keep it as is for now.
+    return data; // Expected to be { result: "Disease Name" }
   } catch (error) {
-    console.error("Error predicting general disease:", error);
+    console.error("Error predicting general disease in service:", error);
     // Re-throw the error so react-query can catch it
     throw error;
   }
 };
 
-export default predictGeneralDisease;
+export { predictGeneralDisease };
