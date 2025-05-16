@@ -164,6 +164,12 @@ function AIPredictionResult({ symptoms }) {
             <p>Error loading advice: {adviceError}</p>
           ) : (
             <>
+                          {advice.about && (
+                              <>
+              <p><strong>About {result}:</strong></p>
+                                <p>{advice.about}</p>
+                              </>
+              )}
               {(advice.dos && advice.dos.length > 0) || (advice.donts && advice.donts.length > 0) ? (
                 <>
                   {advice.dos && advice.dos.length > 0 && (

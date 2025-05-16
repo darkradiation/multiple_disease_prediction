@@ -51,7 +51,7 @@ function App() {
               {/* <Route index element={<Navigate replace to="dashboard" />} /> */}
               <Route
                 index
-                element={<Navigate replace to="diabetes_prediction" />}
+                element={<Navigate replace to="general_disease_prediction" />}
               />
 
               <Route path="dashboard" element={<Dashboard />} />

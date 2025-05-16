@@ -39,7 +39,7 @@ const model = genAI.getGenerativeModel({
 });
 
 export function useIsPositiveNote() {
-  const [advice, setAdvice] = useState({ dos: [], donts: [] });
+  const [advice, setAdvice] = useState({ about: "", dos: [], donts: [] });
   const [isFetchingAdvice, setIsFetchingAdvice] = useState(false);
   const [adviceError, setAdviceError] = useState(null);
 
@@ -47,7 +47,7 @@ export function useIsPositiveNote() {
     if (!diseaseName || diseaseName.trim() === "") {
       setAdvice({ dos: [], donts: [] });
       setAdviceError(null);
-      setIsFetchingAdvice(false);
+ setIsFetchingAdvice(false);
       return;
     }
 
@@ -56,6 +56,7 @@ export function useIsPositiveNote() {
       setAdviceError("API Key not configured.");
       setAdvice({
         // Provide a fallback
+ about: "",
         dos: ["Consult your doctor for specific advice."],
         donts: ["Avoid self-diagnosing or self-medicating."],
       });
@@ -66,12 +67,13 @@ export function useIsPositiveNote() {
     setIsFetchingAdvice(true);
     setAdviceError(null);
     setAdvice({ dos: [], donts: [] }); // Reset previous advice
-
     const prompt =
-      `Provide 2 important 'Do's' and 2 important 'Don'ts' for managing or dealing with ${diseaseName}. ` +
-      `Format the response strictly as a JSON object with two keys: "dos" (a list of 2 strings) and "donts" (a list of 2 strings). ` +
-      `Example: {"dos": ["Do this...", "Do that..."], "donts": ["Don't do this...", "Don't do that..."]}`;
+ `Provide a short 2-line description (under the key "about"), 2 important 'Do's' (under the key "dos"), and 2 important 'Don'ts' (under the key "donts") for managing or dealing with ${diseaseName}. ` +
+ `Format the response strictly as a JSON object with three keys: "about" (a string), "dos" (a list of 2 strings), and "donts" (a list of 2 strings). ` +
+ `Example: {"about": "This is a description\\nline 2.", "dos": ["Do this...", "Do that..."], "donts": ["Don't do this...", "Don't do that..."]}`;
 
+
+ // console.log("Sending prompt:", prompt);
     try {
       const result = await model.generateContent(prompt);
       const responseText = result.response.text();
@@ -88,6 +90,7 @@ export function useIsPositiveNote() {
         const parsedAdvice = JSON.parse(adviceJsonStr);
         if (
           parsedAdvice &&
+ typeof parsedAdvice.about === "string" &&
           Array.isArray(parsedAdvice.dos) &&
           Array.isArray(parsedAdvice.donts) &&
           parsedAdvice.dos.length > 0 &&
@@ -106,6 +109,7 @@ export function useIsPositiveNote() {
         );
         setAdviceError(
           "Advice received from AI is not in the expected format."
+
         );
         // Set a generic fallback
         setAdvice({
@@ -113,7 +117,8 @@ export function useIsPositiveNote() {
             "Consult your doctor for specific advice regarding " +
               diseaseName +
               ".",
-          ],
+ ],
+ about: "Information about " + diseaseName + " could not be loaded.",
           donts: ["Avoid self-medicating without professional guidance."],
         });
       }
@@ -124,6 +129,7 @@ export function useIsPositiveNote() {
       setAdviceError(message);
       toast.error(`Failed to get advice: ${message}`);
       // Set a generic fallback
+
       setAdvice({
         dos: ["Consult your doctor for specific advice."],
         donts: ["Avoid self-medicating without professional guidance."],
