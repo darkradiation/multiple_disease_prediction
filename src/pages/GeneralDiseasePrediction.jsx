@@ -7,7 +7,8 @@ import Form from "../ui/Form";
 import InputBox from "../ui/InputBox";
 import FormHeader from "../ui/FormHeader";
 import { usePredictGeneralDisease } from "../features/usePredictGeneralDisease";
-import PredictionResult from "../ui/PredictionResult"; // Assuming PredictionResult is a shared component
+import PredictionResult from "../ui/PredictionResult"; 
+import AIPredictionResult from "../ui/AIPredictionResult"; 
 import SelectBox from "../ui/SelectBox"; // Import the new SelectBox component
 
 // List of general symptoms
@@ -228,7 +229,10 @@ function GeneralDiseasePrediction() {
       </Form>
 
       {!isPredicting && response && (
-        <PredictionResult result={response.result} check="General Disease" />
+        <PredictionResult result={response.result} check="General Disease"/>
+      )}
+      {!isPredicting && response && (
+        <AIPredictionResult symptoms={selectedSymptoms} />
       )}
     </>
   );
