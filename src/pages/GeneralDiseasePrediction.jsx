@@ -10,6 +10,7 @@ import { usePredictGeneralDisease } from "../features/usePredictGeneralDisease";
 import PredictionResult from "../ui/PredictionResult"; 
 import AIPredictionResult from "../ui/AIPredictionResult"; 
 import SelectBox from "../ui/SelectBox"; // Import the new SelectBox component
+import CheckBox from "../ui/CheckBox"; // Import the CheckBox component
 
 // List of general symptoms
 const generalSymptoms = [
@@ -158,6 +159,7 @@ const StyledImage = styled.img`
 
 function GeneralDiseasePrediction() {
   const [selectedSymptoms, setSelectedSymptoms] = useState([]);
+  const [allowAIPrediction, setAllowAIPrediction] = useState(false);
 
   const { predictGeneralDisease, isPredicting, response } =
     usePredictGeneralDisease();
@@ -231,9 +233,15 @@ function GeneralDiseasePrediction() {
       {!isPredicting && response && (
         <PredictionResult result={response.result} check="General Disease"/>
       )}
-      {!isPredicting && response && (
+      {allowAIPrediction && !isPredicting && response && (
         <AIPredictionResult symptoms={selectedSymptoms} />
       )}
+      <CheckBox
+        checked={allowAIPrediction}
+        onChange={() => setAllowAIPrediction(!allowAIPrediction)}
+      >
+        Allow AI Prediction
+      </CheckBox>
     </>
   );
 }
