@@ -14,11 +14,11 @@ function HeaderMenu() {
   const navigate = useNavigate();
   return (
     <StyledHeaderMenu>
-      <li>
+      {/* <li>
         <ButtonIcon onClick={() => navigate("/account")}>
           <HiOutlineUser />
         </ButtonIcon>
-      </li>
+      </li> */}
       {/* <li>
         <Logout />
       </li> */}
